@@ -48,7 +48,12 @@ def calculate_dtw(file_path, light=True, gas=True):
 if __name__ == '__main__':
     # Example of computing entropy and DTW distance for light and gas data for the Home scenario:
     # data is inside the "hardzipa-data" folder from https://zenodo.org/record/8263497
-    filepath = 'C:/Users/mfomichev/Desktop/hardzipa-data/Home'
+    filepath = '/home/jun20/jun/kaist_lecture/2024-2/IOT/hardzipa/results'
 
-    calculate_entropy(filepath)
-    calculate_dtw(filepath)
+    # We need only file_path
+    # evaluate_audio.calc_entropy("../audiorecords/",plot_wform=True)
+    # evaluate_audio.calc_entropy("../audiorecords/", save_path="../audiorecords/results", plot_wform=True)
+    evaluate_audio.calc_entropy("../audiorecords/")
+
+    # calculate_entropy(filepath)
+    # calculate_dtw(filepath)

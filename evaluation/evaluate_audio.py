@@ -12,6 +12,7 @@ time_format = "%Y-%m-%d %H:%M:%S.%m"
 
 
 def list_files(file_path, file_format):
+    print(file_path, file_format)
     return glob(os.path.join(os.path.join(file_path, "**"), file_format), recursive=True)
 
 
@@ -31,12 +32,28 @@ def plot_waveform(data, sampling_rate, file_path, experiment, device):
     caption = f"{experiment} for {device}"
     plt.plot(n_samples, data)
     plt.title(f"{experiment} device: {device}")
-    plt.grid(b=True, which='major', color='#666666', linestyle='-')
+    plt.grid(which='major', color='#666666', linestyle='-')
     print(f"draw image for {experiment} {device}")
     plt.savefig(os.path.join(save_path, caption + ".png"))
     plt.clf()
     plt.close("all")
     print("image done")
+
+# def plot_waveform(data, sampling_rate, file_path, experiment, device):
+#     n_samples = np.arange(0, len(data) / sampling_rate, 1 / sampling_rate).astype("timedelta64[m]")
+#     save_path = os.path.join(file_path, "audio", experiment)
+#     os.makedirs(save_path, exist_ok=True)
+
+#     caption = f"{experiment} for {device}"
+#     plt.plot(n_samples, data)
+#     plt.title(f"{experiment} device: {device}")
+#     # 변경된 부분: b 대신 visible 사용
+#     plt.grid(visible=True, which='major', color='#666666', linestyle='-')
+#     print(f"draw image for {experiment} {device}")
+#     plt.savefig(os.path.join(save_path, caption + ".png"))
+#     plt.clf()
+#     plt.close("all")
+#     print("image done")
 
 
 def calc_entropy(file_path, save_path=False, multithreading=False, plot_hist=False, plot_wform=False):
@@ -113,6 +130,7 @@ def calc_entropy(file_path, save_path=False, multithreading=False, plot_hist=Fal
                                                                                   plot_hist=False,
                                                                                   is_audio=True)
 
+    print(entropy)
     # Save calculated entropy in JSON
-    with open(os.path.join(file_path, "audio_entropy.json"), "w") as json_file:
+    with open(os.path.join(file_path, "audio_entropy3.json"), "w") as json_file:
         json.dump(entropy, json_file)
